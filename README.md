@@ -1,10 +1,11 @@
 # MIMIC-DataLoader
 
-[![PyPI version](https://badge.fury.io/py/mimic-dataloader.svg)](https://badge.fury.io/py/mimic-dataloader)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Drop-in PyTorch Dataset classes for the most common MIMIC-IV clinical prediction tasks.**
+**Drop-in PyTorch Dataset classes for MIMIC-IV clinical prediction tasks (mortality, readmission, LOS, sepsis, phenotyping, decompensation)**
+
+*Topics: pytorch, mimic-iv, clinical-ml, ehr, healthcare-ai, dataset*
 
 `mimic-dataloader` aims to do for structured EHR data what TorchXRayVision did for chest X-rays. Researchers currently spend days writing custom preprocessing scripts to extract features, handle time-series splits securely, and structure the data for PyTorch every time they start a new MIMIC-IV project.
 
@@ -55,7 +56,11 @@ for batch in train_loader:
 5. **Phenotyping:** Multi-label classification of 25 common clinical conditions.
 6. **Decompensation:** Predict physiologic decompensation in the next 24 hours.
 
-*(Coming soon: Extensible base classes for custom feature engineering and new prediction tasks.)*
+## Known Limitations & V0.1 Scope
+
+* **Feature Set:** Currently extracts 7 common continuous vital signs (Heart Rate, Respiratory Rate, O2 Saturation, SBP, DBP, MAP, Temperature). Lab values (e.g. creatinine, lactate) and medications are planned for v0.2.
+* **Imputation:** Time buckets are forward-filled (`ffill`). If a value is missing at the start of a sequence before a forward-fill can occur, it will be left as NaN (and eventually 0-padded in the tensor), which users should handle downstream.
+* **Version Paths:** Supports both MIMIC-IV v1.0 (`core/` demographics directory) and v2.0+ (`hosp/` directory) automatically.
 
 ## Requirements
 * PyTorch >= 2.0.0
