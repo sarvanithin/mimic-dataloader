@@ -95,6 +95,9 @@ def extract_time_series_features(
         aggfunc='mean' # Taking mean within the hour bucket
     )
     
+    # Forward-fill to impute missing values across sequential time buckets
+    pivoted = pivoted.groupby(level='stay_id').ffill()
+    
     return pivoted
 
 def _generate_mock_chartevents(

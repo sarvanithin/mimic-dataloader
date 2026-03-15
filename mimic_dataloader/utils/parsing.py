@@ -19,9 +19,12 @@ def load_core_demographics(mimic_dir: Union[str, Path]) -> pd.DataFrame:
     """
     mimic_dir = Path(mimic_dir)
     
+    # Determine if using MIMIC-IV v1.0 (core/) or v2.0+ (hosp/)
+    core_dir = mimic_dir / "hosp" if (mimic_dir / "hosp").exists() else mimic_dir / "core"
+    
     # Define paths
-    patients_path = mimic_dir / "core" / "patients.csv"
-    admissions_path = mimic_dir / "core" / "admissions.csv"
+    patients_path = core_dir / "patients.csv"
+    admissions_path = core_dir / "admissions.csv"
     icustays_path = mimic_dir / "icu" / "icustays.csv"
     
     # Check existence

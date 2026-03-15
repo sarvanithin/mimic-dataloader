@@ -42,7 +42,8 @@ class SepsisDataset(MimicDataset):
             stay_id = row['stay_id']
             # Highly simplified mock label for sepsis until full sepsis-3 mimic tables are built
             # Sepsis-3 requires joining microbiologyevents and prescriptions for abx
-            label = np.random.randint(0, 2)
+            los = float(row.get('los', 0))
+            label = 1 if (los > 3.0 and np.random.rand() < 0.35) else 0
             
             if stay_id in features_df.index.get_level_values('stay_id'):
                 stay_features = features_df.loc[stay_id].values

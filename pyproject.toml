@@ -7,7 +7,7 @@ name = "mimic-dataloader"
 version = "0.1.0"
 description = "Drop-in PyTorch Dataset classes for standard MIMIC-IV prediction tasks."
 readme = "README.md"
-authors = [{ name = "Maintainers", email = "author@example.com" }]
+authors = [{ name = "Nithin Sarva", email = "nithin@nithinsarva.com" }]
 license = { text = "MIT" }
 classifiers = [
     "Programming Language :: Python :: 3",
