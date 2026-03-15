@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mimic-dataloader"
+version = "0.1.0"
+description = "Drop-in PyTorch Dataset classes for standard MIMIC-IV prediction tasks."
+readme = "README.md"
+authors = [{ name = "Maintainers", email = "author@example.com" }]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+keywords = ["pytorch", "dataloader", "mimic-iv", "ehr", "clinical-prediction"]
+dependencies = [
+    "torch>=2.0.0",
+    "pandas>=2.0.0",
+    "numpy>=1.20.0",
+    "scikit-learn>=1.0.0",
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "flake8>=6.0.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["mimic_dataloader", "mimic_dataloader.*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
